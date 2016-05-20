@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="../shared-components.html">
+</head>
+<body>
+    <dom-module id="todo-component">
+        <style include="iron-flex iron-flex-alignment">
+            .hover {
+                cursor: pointer;
+            }
+            
+            .important {
+                color: orange;
+            }
+            
+            .hidden {
+                display: none;
+            }
+            
+            .check:hover {
+                color:green;
+            }
+            
+            .clear:hover {
+                color:red;
+            }
+            
+            .menuicon {
+                width: 35px;
+                height: 35px;
+            }
+            
+        </style>
+        <template>
+            <template is="dom-repeat" items="{{todoItems}}">
+                <paper-item>
+                    <paper-icon-button icon="warning" on-tap="toggleImportant" class="" id="{{index}}"></paper-icon-button>
+                    <paper-item-body two-line class="hover">
+                        <div  class="layout horizontal">
+                            <div class="flex">&nbsp;{{item.title}}</div>
+                            
+                        </div>
+                        <div secondary>
+                        {{item.description}}
+                        </div>
+                    </paper-item-body>
+                    <paper-icon-button icon="check" id="checkButton" class="menuicon check end-justied"></paper-icon-button>
+                    <paper-icon-button icon="clear" id="clearButton" class="menuicon clear end-justied"></paper-icon-button>
+                </paper-item>
+            </template> 
+        </template>
+        <script>
+            Polymer({
+                is : "todo-component",
+                ready : function(){
+                    this.important;
+                    this.todoItems = [
+                        {
+                            title : "Area 12 Piling",
+                            description : "About info",
+                            important : "",
+                            position : 0
+                        },
+                        {
+                            title : "Area 12 Piling",
+                            description : "About info",
+                            important : "",
+                            position : 0
+                        },{
+                            title : "Area 12 Piling",
+                            description : "About info",
+                            important : "",
+                            position : 0
+                        }
+                    ];
+                },
+                toggleImportant : function(e){
+                    
+                    let target = Polymer.dom(e).localTarget;
+                    let targetID = target.id;
+                    
+                    Polymer.dom(e).localTarget.toggleClass("important");
+                    
+                    if(this.todoItems[Polymer.dom(e).localTarget.id].important == "important"){
+                        var todoItem = this.todoItems[Polymer.dom(e).localTarget.id];
+                        todoItem.important = "";
+                        this.splice('todoItems', targetID, 1, todoItem);
+                    }else{
+                        var todoItem = this.todoItems[Polymer.dom(e).localTarget.id];
+                        todoItem.important = "important";
+                        this.splice('todoItems', targetID, 1, todoItem);
+                    }
+                    
+                    console.log(this.todoItems)
+                },
+                toggleDeleteButton : function(e){
+                    let target = Polymer.dom(e).localTarget;
+                    let targetID = target.id;
+                    
+                    console.log(Polymer.dom(e).localTarget.querySelector('#clearButton').pressed)
+                    
+                    
+                }
+                                          
+            });
+        </script>
+    </dom-module>
+</body>
+</html>

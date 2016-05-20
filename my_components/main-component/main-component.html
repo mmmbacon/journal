@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="../shared-components.html">
+    
+    <link rel="import" href="/my_components/todo-component/todo-component.html">
+</head>
+
+<body>
+    
+    <dom-module id="main-component">
+        <style include="iron-flex iron-flex-alignment">
+        
+        </style>
+        
+        <template>
+            <paper-drawer-panel>
+                <div drawer>
+                    <paper-header-panel>
+                        <paper-toolbar>
+                            <div>TODO</div>
+                        </paper-toolbar>
+                        <todo-component></todo-component>
+                    </paper-header-panel>
+                </div>
+                <div main>
+                    <paper-header-panel class="flex">
+                        <paper-toolbar>
+                            <div>DETAILS</div>
+                        </paper-toolbar>
+                    </paper-header-panel>
+                    </div>
+            </paper-drawer-panel>
+        </template>
+        <script>
+            Polymer({
+                is : "main-component",
+                ready: function(){
+                    
+                }
+            });
+        </script>
+    </dom-module>
+    
+    
+    
+</body>
+</html>
